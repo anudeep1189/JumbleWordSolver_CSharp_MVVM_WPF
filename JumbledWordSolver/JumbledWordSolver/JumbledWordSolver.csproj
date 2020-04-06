@@ -55,8 +55,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="View\JumbledWordsView.xaml.cs">
-      <DependentUpon>JumbledWordsView.xaml</DependentUpon>
+    <Compile Include="Comand\RelayCommand.cs" />
+    <Compile Include="Model\JumbledWordSolverModel.cs" />
+    <Compile Include="ViewModel\JumbledWordSolverViewModel.cs" />
+    <Compile Include="View\JumbledWordSolverView.xaml.cs">
+      <DependentUpon>JumbledWordSolverView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -70,7 +73,7 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\JumbledWordsView.xaml">
+    <Page Include="View\JumbledWordSolverView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -101,10 +104,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Comand\" />
-    <Folder Include="Model\" />
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
