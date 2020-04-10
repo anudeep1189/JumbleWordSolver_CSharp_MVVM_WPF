@@ -13,5 +13,11 @@ namespace JumbledWordSolver
     /// </summary>
     public partial class App : Application
     {
+        public void OnStartup(object sender, StartupEventArgs e)
+        {
+            MainWindow view = new MainWindow();
+            view.DataContext = new ViewModel.JumbledWordSolverViewModel();
+            view.Show();
+        }
     }
 }

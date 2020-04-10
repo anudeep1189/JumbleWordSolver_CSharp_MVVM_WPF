@@ -56,7 +56,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Comand\RelayCommand.cs" />
+    <Compile Include="Model\FileReader.cs" />
     <Compile Include="Model\JumbledWordSolverModel.cs" />
+    <Compile Include="Model\WordMatcher.cs" />
     <Compile Include="ViewModel\JumbledWordSolverViewModel.cs" />
     <Compile Include="View\JumbledWordSolverView.xaml.cs">
       <DependentUpon>JumbledWordSolverView.xaml</DependentUpon>
@@ -105,5 +107,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Utility\EnglishDictionaryFiles\english2.txt" />
+    <Resource Include="Utility\EnglishDictionaryFiles\english3.txt" />
+    <Resource Include="Utility\EnglishDictionaryFiles\engmix.txt" />
+    <Resource Include="Utility\EnglishDictionaryFiles\ukenglish.txt" />
+    <Resource Include="Utility\EnglishDictionaryFiles\usa.txt" />
+    <Resource Include="Utility\EnglishDictionaryFiles\usa2.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
