@@ -11,7 +11,7 @@ namespace JumbledWordSolver.Model
         public List<MatchedWord> Match(string[] scrambledWords, string[] wordList)
         {
             var matchWords = new List<MatchedWord>();
-
+        
             foreach (var scrambledWord in scrambledWords)
             {
                 foreach(var word in wordList)
@@ -20,21 +20,29 @@ namespace JumbledWordSolver.Model
                     {
                         matchWords.Add(BuildMatchedWord(scrambledWord,word));
                     }
-                    else
+
+                    //if length of both word is same then proceed with this condition or else 
+                    //wasting time in checking the word.
+                    else if(scrambledWord.Length == word.Length) 
                     {
                         var scrambleWordArray = scrambledWord.ToCharArray();
                         var wordArray = word.ToCharArray();
 
                         Array.Sort(scrambleWordArray);
                         Array.Sort(wordArray);
-                        
-                        //char array to string creation
-                        var sortedScrambledWord = new string(scrambleWordArray);
-                        var sortedwordArray = new string(wordArray);
 
-                        if(sortedScrambledWord.Equals(sortedwordArray, StringComparison.OrdinalIgnoreCase))
+                        //see if first letter of sorted scrambled word and word is same
+                        //if not then no need to compare.
+                        if (scrambleWordArray[0].ToString().Equals(wordArray[0].ToString(), StringComparison.OrdinalIgnoreCase))
                         {
-                            matchWords.Add(BuildMatchedWord(scrambledWord, word));
+                            //char array to string creation
+                            var sortedScrambledWord = new string(scrambleWordArray);
+                            var sortedwordArray = new string(wordArray);
+
+                            if (sortedScrambledWord.Equals(sortedwordArray, StringComparison.OrdinalIgnoreCase))
+                            {
+                                matchWords.Add(BuildMatchedWord(scrambledWord, word));
+                            }  
                         }
                     }
                 }

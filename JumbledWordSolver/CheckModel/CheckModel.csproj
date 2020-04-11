@@ -55,5 +55,23 @@
       <Name>JumbledWordSolver</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Utility\EnglishDictionaryFiles\english2.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Utility\EnglishDictionaryFiles\english3.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Utility\EnglishDictionaryFiles\engmix.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Utility\EnglishDictionaryFiles\ukenglish.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Utility\EnglishDictionaryFiles\usa.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Utility\EnglishDictionaryFiles\usa2.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
