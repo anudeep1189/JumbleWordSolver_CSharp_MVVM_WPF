@@ -10,7 +10,7 @@ namespace CheckModel
         static void Main(string[] args)
         {
             //create the object and call the methods in the model. 
-            JumbledWordSolverModel JWObj = new JumbledWordSolverModel();
+            Solver JWObj = new Solver();
             JWObj.ExecuteScrambledWordManualEntryScenario();
         }
     }
