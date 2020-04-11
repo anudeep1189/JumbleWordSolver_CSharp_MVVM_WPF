@@ -25,15 +25,22 @@
 
         <TextBlock Grid.Row="0" Text="Jumbled word solver" Margin="72,0,172,0" FontSize="36" Grid.ColumnSpan="3"/>
 
-        <RadioButton Grid.Row="1" Grid.Column="0" FontSize="14">Manual</RadioButton>
-        <RadioButton Grid.Row="2" Grid.Column="0" FontSize="14">Select File</RadioButton>
+        <RadioButton  x:Name="selectManual" IsChecked="True" Grid.Row="1" Grid.Column="0" FontSize="14">Manual</RadioButton>
+        <RadioButton x:Name="selectFilePath" Grid.Row="2" Grid.Column="0" FontSize="14">Select File</RadioButton>
 
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="manualEntry" Text="{Binding JumbledWordSolverModel.ManualEntryValue, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ElementName=selectManual, Path=IsChecked}" Margin="5"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="filePath"  Text="{Binding JumbledWordSolverModel.InputFilePath,Mode=TwoWay ,UpdateSourceTrigger=LostFocus}"  IsEnabled="{Binding ElementName=selectFilePath, Path=IsChecked}" Margin="5"></TextBox>
+        <Button Grid.Row="2" Grid.Column="2"  IsEnabled="{Binding ElementName=selectFilePath, Path=IsChecked}"  Command="{Binding BtnPressed}" CommandParameter="openFileBrowser"  Margin="10,5,163,5">Browse</Button>
+        <Button Grid.Row="4" Grid.Column="1" x:Name="solve" Command="{Binding BtnPressed}" CommandParameter="Solve" Margin="43,10,60,7" >Solve</Button>
 
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=JumbledWordSolverModel1.ManualScrambledWord , Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Margin="5"></TextBox>
-        <TextBox Grid.Row="2" Grid.Column="1" x:Name="filePath" Margin="5"></TextBox>
-        <Button Grid.Row="2" Grid.Column="2" Click="btnClick_OpenBrowser" Margin="10,5,163,5">Browse</Button>
-        <Button Grid.Row="4" Grid.Column="1" Margin="43,10,60,7">Solve</Button>
-
-        <ListView x:Name="DisplayOutput" Grid.Row="5" Grid.Column="1" Margin="5,10,5,-142"/>
+        <ListView x:Name="DisplayOutput" Grid.Row="5" Grid.Column="1" Margin="5,10,5,-142">
+            <!--<ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="Name: " />
+                    <TextBlock Text="{Binding Name}" FontWeight="Bold" />
+                </DataTemplate>
+            </ListView.ItemTemplate>-->
+        </ListView>
     </Grid>
 </UserControl>
+    

@@ -8,32 +8,70 @@ using System.IO;
 namespace JumbledWordSolver.Model
 {
     public class JumbledWordSolverModel
-    { 
-       //Write the properties here
-    }
-    public class Solver
     {
+        //Write the properties here
+        private string manualEntryValue;
+        public string ManualEntryValue
+        {
+            get
+            {
+                return manualEntryValue;
+            }
+            set
+            {
+                manualEntryValue = value;
+            }
+
+        }
+
+        private string inputFilePath;
+        public string InputFilePath
+        {
+            get
+            {
+                return inputFilePath;
+            }
+            set
+            {
+                inputFilePath = value;
+            }
+        }
+
+        private string displayUnscrambledWords;
+        public string DisplayUnscrambledWords
+        {
+            get
+            {
+                return displayUnscrambledWords;
+            }
+            set
+            {
+                displayUnscrambledWords = value;
+            }
+        }
+
             private const string dictonaryLocation = @"..\..\Utility\EnglishDictionaryFiles\english2.txt";
             private static readonly FileReader _fileReader = new FileReader();
             private static readonly WordMatcher _wordMatcher = new WordMatcher();
+          
 
-            public void ExecuteScrambledWordManualEntryScenario()
+
+        public void ExecuteScrambledWordManualEntryScenario()
             {
-                string ManualInput = "ttse,oelhl"; //= for textbox;
+                string ManualInput = ManualEntryValue; //= for textbox;
                 string[] scrambledWords = ManualInput.Split(',');
                 DisplayMatchedScrambledWords(scrambledWords);
             }
 
             //TODO: same for file senario also  
-            void ExecuteScrambledWordFileEntryScenario()
+       public void ExecuteScrambledWordFileEntryScenario()
             {
-
-                string inputScrambledFile = ""; //TODO:get the path for the input file which user has selected
+                string inputScrambledFile = InputFilePath;
                 string[] scrambledWords = _fileReader.Read(inputScrambledFile);//get input form the file
                 DisplayMatchedScrambledWords(scrambledWords);
             }
 
-            void DisplayMatchedScrambledWords(string[] scrambledWords)
+           public void DisplayMatchedScrambledWords(string[] scrambledWords)
             {
                 string[] wordList = _fileReader.Read(dictonaryLocation);//= get from the file; //form the dictinory
                 List<MatchedWord> matchedWords = _wordMatcher.Match(scrambledWords, wordList);  //return the list of matched words
@@ -49,8 +87,12 @@ namespace JumbledWordSolver.Model
                     foreach (var matchedWord in matchedWords)
                     {
                         Console.WriteLine("\n{0} = {1}", matchedWord.scrambledWords, matchedWord.word);
+
                     }
                     Console.ReadLine();
+
+
+
 
                 }
                 else
