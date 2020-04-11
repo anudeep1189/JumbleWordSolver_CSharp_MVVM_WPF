@@ -6,33 +6,34 @@
              xmlns:local="clr-namespace:JumbledWordSolver.View"
              xmlns:VM="clr-namespace:JumbledWordSolver.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="450" Width="786"
+    >
+    <Grid Margin="0,10,318,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto" MinHeight="17"></RowDefinition>
+            <RowDefinition Height="auto" MinHeight="39"></RowDefinition>
+            <RowDefinition Height="auto" MinHeight="78"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
-            <ColumnDefinition Width="auto"></ColumnDefinition>
+            <ColumnDefinition Width="auto" MinWidth="102"></ColumnDefinition>
+            <ColumnDefinition Width="auto" MinWidth="221"></ColumnDefinition>
+            <ColumnDefinition Width="auto" MinWidth="291"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Text="Jumbled word solver"></TextBlock>
-        
-        <RadioButton Grid.Row="1" Grid.Column="0">Manual</RadioButton>
-        <RadioButton Grid.Row="2" Grid.Column="0">Select File</RadioButton>
+        <TextBlock Grid.Row="0" Text="Jumbled word solver" Margin="72,0,172,0" FontSize="36" Grid.ColumnSpan="3"/>
+
+        <RadioButton Grid.Row="1" Grid.Column="0" FontSize="14">Manual</RadioButton>
+        <RadioButton Grid.Row="2" Grid.Column="0" FontSize="14">Select File</RadioButton>
 
 
-        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=JumbledWordSolverModel1.ManualScrambledWord , Mode=TwoWay, UpdateSourceTrigger=LostFocus}"></TextBox>
-        <TextBox Grid.Row="2" Grid.Column="1" Text="File path"></TextBox>
-        <Button Grid.Row="2" Grid.Column="2">Browse</Button>
-        <Button Grid.Row="3" Grid.Column="2">Solve</Button>
+        <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Path=JumbledWordSolverModel1.ManualScrambledWord , Mode=TwoWay, UpdateSourceTrigger=LostFocus}" Margin="5"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="filePath" Margin="5"></TextBox>
+        <Button Grid.Row="2" Grid.Column="2" Click="btnClick_OpenBrowser" Margin="10,5,163,5">Browse</Button>
+        <Button Grid.Row="4" Grid.Column="1" Margin="43,10,60,7">Solve</Button>
 
-        <ListView x:Name="DisplayOutput" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Height="200"></ListView>
+        <ListView x:Name="DisplayOutput" Grid.Row="5" Grid.Column="1" Margin="5,29,5,-161"/>
     </Grid>
 </UserControl>
