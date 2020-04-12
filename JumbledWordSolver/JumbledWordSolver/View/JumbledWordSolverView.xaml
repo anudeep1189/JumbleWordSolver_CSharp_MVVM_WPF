@@ -33,13 +33,13 @@
         <Button Grid.Row="2" Grid.Column="2"  IsEnabled="{Binding ElementName=selectFilePath, Path=IsChecked}"  Command="{Binding BtnPressed}" CommandParameter="openFileBrowser"  Margin="10,5,163,5">Browse</Button>
         <Button Grid.Row="4" Grid.Column="1" x:Name="solve" Command="{Binding BtnPressed}" CommandParameter="Solve" Margin="43,10,60,7" >Solve</Button>
 
-        <ListView x:Name="DisplayOutput" Grid.Row="5" Grid.Column="1" Margin="5,10,5,-142">
-            <!--<ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Text="Name: " />
-                    <TextBlock Text="{Binding Name}" FontWeight="Bold" />
-                </DataTemplate>
-            </ListView.ItemTemplate>-->
+        <ListView x:Name="DisplayOutput" Grid.Row="5" Grid.Column="1" Margin="5,10,5,-142" ItemsSource="{Binding CollectionDisplayMatchedWord}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding displayScrambledWord}" Header="Jumbled" Width="100" />
+                    <GridViewColumn DisplayMemberBinding="{Binding displayWord}" Header="Solved" Width="100" />
+                </GridView>
+            </ListView.View>
         </ListView>
     </Grid>
 </UserControl>

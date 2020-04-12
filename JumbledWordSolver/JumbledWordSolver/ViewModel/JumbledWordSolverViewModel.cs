@@ -11,6 +11,7 @@ using JumbledWordSolver.View;
 using System.ComponentModel;
 using System.Windows.Input;
 using Microsoft.Win32;
+using System.Collections.ObjectModel;
 
 namespace JumbledWordSolver.ViewModel
 {
@@ -19,8 +20,37 @@ namespace JumbledWordSolver.ViewModel
         public JumbledWordSolverViewModel()
         {
             JumbledWordSolverModel = new JumbledWordSolverModel();
+          //  OBJDisplayMatchedWord = new DisplayMatchedWord();
+            CollectionDisplayMatchedWord = new ObservableCollection<DisplayMatchedWord>();
+
         }
 
+        //private DisplayMatchedWord _displayMatchedWord;
+        //public DisplayMatchedWord OBJDisplayMatchedWord
+        //{
+        //    get { return _displayMatchedWord; }
+        //    set
+        //    {
+        //        _displayMatchedWord = value;
+               
+        //    }
+        //}
+
+        private ObservableCollection<DisplayMatchedWord> _displayMatchedWords;
+
+        public ObservableCollection<DisplayMatchedWord> CollectionDisplayMatchedWord
+        {
+            get { return _displayMatchedWords; }
+            set
+            {
+                _displayMatchedWords = value;
+                // onPropertyChange("CollectionMeasurementValues");
+            }
+
+        }
+
+        public List<MatchedWord> ouputListOfObjects;
+       
         #region btnPressed
 
         private ICommand btnPressed;
@@ -59,7 +89,18 @@ namespace JumbledWordSolver.ViewModel
                     break;
                 case "Solve":
                     //JumbledWordSolverModel.ExecuteScrambledWordManualEntryScenario();
-                    JumbledWordSolverModel.ExecuteScrambledWordFileEntryScenario();
+                    ouputListOfObjects = JumbledWordSolverModel.ExecuteScrambledWordFileEntryScenario();
+                    foreach (var ouputListOfObject in ouputListOfObjects)
+                    {
+                        DisplayMatchedWord OBJDisplayMatchedWord = new DisplayMatchedWord
+                        {
+                            displayScrambledWord = ouputListOfObject.scrambledWords,
+                            displayWord = ouputListOfObject.word
+                        };
+
+                        CollectionDisplayMatchedWord.Add(OBJDisplayMatchedWord);
+                    }
+
                     break;
 
                 default:
@@ -68,8 +109,6 @@ namespace JumbledWordSolver.ViewModel
         }
 
         #endregion
-
-
 
         private JumbledWordSolverModel _jumbledWordSolverModel;
         public JumbledWordSolverModel JumbledWordSolverModel
@@ -95,5 +134,12 @@ namespace JumbledWordSolver.ViewModel
         }
 
     }
+
+    public class DisplayMatchedWord
+    {
+        public string displayScrambledWord { get; set; }
+        public string displayWord { get; set; }
+    }
+
 
 }

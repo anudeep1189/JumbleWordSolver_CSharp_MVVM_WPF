@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Windows;
 
 namespace JumbledWordSolver.Model
 {
@@ -64,44 +65,27 @@ namespace JumbledWordSolver.Model
             }
 
             //TODO: same for file senario also  
-       public void ExecuteScrambledWordFileEntryScenario()
+       public List<MatchedWord> ExecuteScrambledWordFileEntryScenario()
             {
                 string inputScrambledFile = InputFilePath;
                 string[] scrambledWords = _fileReader.Read(inputScrambledFile);//get input form the file
-                DisplayMatchedScrambledWords(scrambledWords);
+                return DisplayMatchedScrambledWords(scrambledWords);
             }
 
-           public void DisplayMatchedScrambledWords(string[] scrambledWords)
+        public List<MatchedWord> DisplayMatchedScrambledWords(string[] scrambledWords)
+        {
+            string[] wordList = _fileReader.Read(dictonaryLocation);//= get from the file; //form the dictinory
+            List<MatchedWord> matchedWords = _wordMatcher.Match(scrambledWords, wordList);  //return the list of matched words
+
+            if (matchedWords.Count() == 0)
             {
-                string[] wordList = _fileReader.Read(dictonaryLocation);//= get from the file; //form the dictinory
-                List<MatchedWord> matchedWords = _wordMatcher.Match(scrambledWords, wordList);  //return the list of matched words
-
-                if (matchedWords.Any())
-                {
-                    //show matched words
-                    //matchedWords.scrambledWords  //gives scrambled words
-                    //matchedWords.word // gives the matched words in respect to scrambled word
-
-                    //For debuggin using the consol appliction checkModel
-
-                    foreach (var matchedWord in matchedWords)
-                    {
-                        Console.WriteLine("\n{0} = {1}", matchedWord.scrambledWords, matchedWord.word);
-
-                    }
-                    Console.ReadLine();
-
-
-
-
-                }
-                else
-                {
-                    //nothing matched
-                }
+                MessageBox.Show("No match Found");
             }
+
+            return matchedWords;
+        }
     }
-    class MatchedWord
+    public class MatchedWord
     {
         public string scrambledWords { get; set; }
         public string word { get; set; }
