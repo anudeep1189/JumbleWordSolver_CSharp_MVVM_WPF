@@ -57,11 +57,11 @@ namespace JumbledWordSolver.Model
           
 
 
-        public void ExecuteScrambledWordManualEntryScenario()
+        public List<MatchedWord> ExecuteScrambledWordManualEntryScenario()
             {
                 string ManualInput = ManualEntryValue; //= for textbox;
                 string[] scrambledWords = ManualInput.Split(',');
-                DisplayMatchedScrambledWords(scrambledWords);
+                return DisplayMatchedScrambledWords(scrambledWords);
             }
 
             //TODO: same for file senario also  

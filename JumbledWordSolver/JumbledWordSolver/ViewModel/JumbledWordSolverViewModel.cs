@@ -20,21 +20,9 @@ namespace JumbledWordSolver.ViewModel
         public JumbledWordSolverViewModel()
         {
             JumbledWordSolverModel = new JumbledWordSolverModel();
-          //  OBJDisplayMatchedWord = new DisplayMatchedWord();
             CollectionDisplayMatchedWord = new ObservableCollection<DisplayMatchedWord>();
 
         }
-
-        //private DisplayMatchedWord _displayMatchedWord;
-        //public DisplayMatchedWord OBJDisplayMatchedWord
-        //{
-        //    get { return _displayMatchedWord; }
-        //    set
-        //    {
-        //        _displayMatchedWord = value;
-               
-        //    }
-        //}
 
         private ObservableCollection<DisplayMatchedWord> _displayMatchedWords;
 
@@ -88,23 +76,79 @@ namespace JumbledWordSolver.ViewModel
                     }
                     break;
                 case "Solve":
-                    //JumbledWordSolverModel.ExecuteScrambledWordManualEntryScenario();
-                    ouputListOfObjects = JumbledWordSolverModel.ExecuteScrambledWordFileEntryScenario();
-                    foreach (var ouputListOfObject in ouputListOfObjects)
+                    if (manualSelect)
                     {
-                        DisplayMatchedWord OBJDisplayMatchedWord = new DisplayMatchedWord
+                        ouputListOfObjects = JumbledWordSolverModel.ExecuteScrambledWordManualEntryScenario();
+                        foreach (var ouputListOfObject in ouputListOfObjects)
                         {
-                            displayScrambledWord = ouputListOfObject.scrambledWords,
-                            displayWord = ouputListOfObject.word
-                        };
+                            DisplayMatchedWord OBJDisplayMatchedWord = new DisplayMatchedWord
+                            {
+                                displayScrambledWord = ouputListOfObject.scrambledWords,
+                                displayWord = ouputListOfObject.word
+                            };
 
-                        CollectionDisplayMatchedWord.Add(OBJDisplayMatchedWord);
+                            CollectionDisplayMatchedWord.Add(OBJDisplayMatchedWord);
+                        }
                     }
+                    else if (fileSelect)
+                    {
+                        ouputListOfObjects = JumbledWordSolverModel.ExecuteScrambledWordFileEntryScenario();
+                        foreach (var ouputListOfObject in ouputListOfObjects)
+                        {
+                            DisplayMatchedWord OBJDisplayMatchedWord = new DisplayMatchedWord
+                            {
+                                displayScrambledWord = ouputListOfObject.scrambledWords,
+                                displayWord = ouputListOfObject.word
+                            };
 
+                            CollectionDisplayMatchedWord.Add(OBJDisplayMatchedWord);
+                        }
+                    }
                     break;
 
                 default:
                     break;
+            }
+        }
+
+        #endregion
+
+        bool manualSelect = true;
+        bool fileSelect = false;
+
+        #region radiobtn
+        private ICommand radiobtn;
+        public ICommand Radiobtn
+        {
+            get
+            {
+                if (radiobtn == null)
+                {
+                    radiobtn = new RelayCommand(ExecuteRadioBtnPressed, CanExecuteRadioBtnPressed, CanExecuteRadioBtnPressedChanged);
+
+                }
+                return radiobtn;
+            }
+        }
+
+        public bool CanExecuteRadioBtnPressedChanged { get; private set; }
+
+        private bool CanExecuteRadioBtnPressed(object arg)
+        {
+            return true;
+        }
+
+        private void ExecuteRadioBtnPressed(object obj)
+        {
+            if (obj.ToString().Equals("fileSelect"))
+            {
+                manualSelect = false;
+                fileSelect = true;
+            }
+            else if (obj.ToString().Equals("manualSelect"))
+            {
+                manualSelect = true;
+                fileSelect = false;
             }
         }
 

@@ -25,8 +25,8 @@
 
         <TextBlock Grid.Row="0" Text="Jumbled word solver" Margin="72,0,172,0" FontSize="36" Grid.ColumnSpan="3"/>
 
-        <RadioButton  x:Name="selectManual" IsChecked="True" Grid.Row="1" Grid.Column="0" FontSize="14">Manual</RadioButton>
-        <RadioButton x:Name="selectFilePath" Grid.Row="2" Grid.Column="0" FontSize="14">Select File</RadioButton>
+        <RadioButton  x:Name="selectManual" IsChecked="True" Grid.Row="1" Grid.Column="0" FontSize="14" Command="{Binding Radiobtn}" CommandParameter="selectManual">Manual</RadioButton>
+        <RadioButton x:Name="selectFilePath" Grid.Row="2" Grid.Column="0" FontSize="14" Command="{Binding Radiobtn}" CommandParameter="fileSelect">Select File</RadioButton>
 
         <TextBox Grid.Row="1" Grid.Column="1" x:Name="manualEntry" Text="{Binding JumbledWordSolverModel.ManualEntryValue, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ElementName=selectManual, Path=IsChecked}" Margin="5"></TextBox>
         <TextBox Grid.Row="2" Grid.Column="1" x:Name="filePath"  Text="{Binding JumbledWordSolverModel.InputFilePath,Mode=TwoWay ,UpdateSourceTrigger=LostFocus}"  IsEnabled="{Binding ElementName=selectFilePath, Path=IsChecked}" Margin="5"></TextBox>
