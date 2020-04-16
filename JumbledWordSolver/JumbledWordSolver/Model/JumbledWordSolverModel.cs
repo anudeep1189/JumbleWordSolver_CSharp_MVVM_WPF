@@ -59,7 +59,7 @@ namespace JumbledWordSolver.Model
 
         public List<MatchedWord> ExecuteScrambledWordManualEntryScenario()
             {
-                string ManualInput = ManualEntryValue; //= for textbox;
+                string ManualInput = ManualEntryValue;
                 string[] scrambledWords = ManualInput.Split(',');
                 return DisplayMatchedScrambledWords(scrambledWords);
             }

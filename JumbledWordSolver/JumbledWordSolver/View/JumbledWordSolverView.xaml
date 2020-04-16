@@ -28,8 +28,8 @@
         <RadioButton  x:Name="selectManual" IsChecked="True" Grid.Row="1" Grid.Column="0" FontSize="14" Command="{Binding Radiobtn}" CommandParameter="selectManual">Manual</RadioButton>
         <RadioButton x:Name="selectFilePath" Grid.Row="2" Grid.Column="0" FontSize="14" Command="{Binding Radiobtn}" CommandParameter="fileSelect">Select File</RadioButton>
 
-        <TextBox Grid.Row="1" Grid.Column="1" x:Name="manualEntry" Text="{Binding JumbledWordSolverModel.ManualEntryValue, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" IsEnabled="{Binding ElementName=selectManual, Path=IsChecked}" Margin="5"></TextBox>
-        <TextBox Grid.Row="2" Grid.Column="1" x:Name="filePath"  Text="{Binding JumbledWordSolverModel.InputFilePath,Mode=TwoWay ,UpdateSourceTrigger=LostFocus}"  IsEnabled="{Binding ElementName=selectFilePath, Path=IsChecked}" Margin="5"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="manualEntry" Text="{Binding JumbledWordSolverModel.ManualEntryValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ElementName=selectManual, Path=IsChecked}" Margin="5"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="filePath"  Text="{Binding JumbledWordSolverModel.InputFilePath,Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged}"  IsEnabled="{Binding ElementName=selectFilePath, Path=IsChecked}" Margin="5"></TextBox>
         <Button Grid.Row="2" Grid.Column="2"  IsEnabled="{Binding ElementName=selectFilePath, Path=IsChecked}"  Command="{Binding BtnPressed}" CommandParameter="openFileBrowser"  Margin="10,5,163,5">Browse</Button>
         <Button Grid.Row="4" Grid.Column="1" x:Name="solve" Command="{Binding BtnPressed}" CommandParameter="Solve" Margin="43,10,60,7" >Solve</Button>
 

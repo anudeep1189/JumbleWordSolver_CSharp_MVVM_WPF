@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
+using System.Windows;
 
 namespace JumbledWordSolver.Model
 {
@@ -21,14 +22,15 @@ namespace JumbledWordSolver.Model
         {
             string[] fileContent;
             try
-            {
-                fileContent = File.ReadAllLines(dictonaryLocation);
+            {  
+                    fileContent = File.ReadAllLines(dictonaryLocation);
+                    return fileContent;
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-            return fileContent;
+           
         }
     }
 }

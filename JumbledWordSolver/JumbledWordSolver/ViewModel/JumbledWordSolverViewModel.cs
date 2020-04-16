@@ -12,6 +12,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using Microsoft.Win32;
 using System.Collections.ObjectModel;
+using System.Windows;
 
 namespace JumbledWordSolver.ViewModel
 {
@@ -48,18 +49,31 @@ namespace JumbledWordSolver.ViewModel
             {
                 if (btnPressed == null)
                 {
-                    btnPressed = new RelayCommand(ExecuteBtnPressed,CanExecuteBtnPressed,CanExecuteBtnPressedChanged);
+                    btnPressed = new RelayCommand(ExecuteBtnPressed,CanExecuteBtnPressed,false);
 
                 }
                 return btnPressed;
             }
         }
 
-        public bool CanExecuteBtnPressedChanged { get; private set; }
+        public bool CanExecuteBtnPressedChanged
+        { get; private set; }
 
         private bool CanExecuteBtnPressed(object arg)
         {
-            return true;
+            
+            if (manualSelect == true && (JumbledWordSolverModel.ManualEntryValue != null &&
+                JumbledWordSolverModel.ManualEntryValue != string.Empty))
+            {
+                return true;
+            }
+            else if (fileSelect == true )
+            {
+                return true;
+
+            }
+            return false;
+           
         }
 
         private void ExecuteBtnPressed(object obj)
@@ -90,7 +104,7 @@ namespace JumbledWordSolver.ViewModel
                             CollectionDisplayMatchedWord.Add(OBJDisplayMatchedWord);
                         }
                     }
-                    else if (fileSelect)
+                    else if (fileSelect && JumbledWordSolverModel.InputFilePath != null)
                     {
                         ouputListOfObjects = JumbledWordSolverModel.ExecuteScrambledWordFileEntryScenario();
                         foreach (var ouputListOfObject in ouputListOfObjects)
@@ -104,8 +118,11 @@ namespace JumbledWordSolver.ViewModel
                             CollectionDisplayMatchedWord.Add(OBJDisplayMatchedWord);
                         }
                     }
+                    else
+                    {
+                        MessageBox.Show("Please Correct your input and try again");
+                    }
                     break;
-
                 default:
                     break;
             }
@@ -124,7 +141,7 @@ namespace JumbledWordSolver.ViewModel
             {
                 if (radiobtn == null)
                 {
-                    radiobtn = new RelayCommand(ExecuteRadioBtnPressed, CanExecuteRadioBtnPressed, CanExecuteRadioBtnPressedChanged);
+                    radiobtn = new RelayCommand(ExecuteRadioBtnPressed, CanExecuteRadioBtnPressed, false);
 
                 }
                 return radiobtn;
@@ -140,20 +157,20 @@ namespace JumbledWordSolver.ViewModel
 
         private void ExecuteRadioBtnPressed(object obj)
         {
-            if (obj.ToString().Equals("fileSelect"))
-            {
-                manualSelect = false;
-                fileSelect = true;
-            }
-            else if (obj.ToString().Equals("manualSelect"))
+            if (obj.ToString().Equals("selectManual"))
             {
                 manualSelect = true;
                 fileSelect = false;
             }
+            else if (obj.ToString().Equals("fileSelect"))
+            {
+                manualSelect = false;
+                fileSelect = true;
+            }
         }
 
         #endregion
-
+      
         private JumbledWordSolverModel _jumbledWordSolverModel;
         public JumbledWordSolverModel JumbledWordSolverModel
         {
@@ -167,6 +184,8 @@ namespace JumbledWordSolver.ViewModel
                 OnPropertyChange("JumbledWordSolverModel");
             }
         }
+
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChange(string propertyName)
