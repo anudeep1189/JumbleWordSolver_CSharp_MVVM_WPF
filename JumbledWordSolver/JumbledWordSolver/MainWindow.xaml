@@ -6,7 +6,7 @@
         xmlns:uc="clr-namespace:JumbledWordSolver.View"
         xmlns:local="clr-namespace:JumbledWordSolver"
         mc:Ignorable="d"
-        Title="MainWindow" Height="500" Width="480"
+        Title="Jumbled Word Solver" Height="500" Width="480"
         ResizeMode="CanMinimize"
         >
     <Grid>
