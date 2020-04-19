@@ -62,12 +62,12 @@ namespace JumbledWordSolver.ViewModel
         private bool CanExecuteBtnPressed(object arg)
         {
 
-            if (manualSelect == true && (JumbledWordSolverModel.ManualEntryValue != null &&
+            if (JumbledWordSolverModel.ManualSelect == true && (JumbledWordSolverModel.ManualEntryValue != null &&
                 JumbledWordSolverModel.ManualEntryValue != string.Empty))
             {
                 return true;
             }
-            else if (fileSelect == true)
+            else if (JumbledWordSolverModel.FileSelect == true)
             {
                 return true;
 
@@ -90,7 +90,7 @@ namespace JumbledWordSolver.ViewModel
                     }
                     break;
                 case "Solve":
-                    if (manualSelect)
+                    if (JumbledWordSolverModel.ManualSelect)
                     {
                         ouputListOfObjects = JumbledWordSolverModel.ExecuteScrambledWordManualEntryScenario();
                         foreach (var ouputListOfObject in ouputListOfObjects)
@@ -104,7 +104,7 @@ namespace JumbledWordSolver.ViewModel
                             CollectionDisplayMatchedWord.Add(OBJDisplayMatchedWord);
                         }
                     }
-                    else if (fileSelect && JumbledWordSolverModel.InputFilePath != null)
+                    else if (JumbledWordSolverModel.FileSelect && JumbledWordSolverModel.InputFilePath != null)
                     {
                         ouputListOfObjects = JumbledWordSolverModel.ExecuteScrambledWordFileEntryScenario();
                         foreach (var ouputListOfObject in ouputListOfObjects)
@@ -129,13 +129,6 @@ namespace JumbledWordSolver.ViewModel
         }
 
         #endregion
-
-        bool manualSelect = true;
-        bool fileSelect = false;
-
-        
-
-
 
         #region radiobtn
         private ICommand radiobtn;
@@ -163,13 +156,15 @@ namespace JumbledWordSolver.ViewModel
         {
             if (obj.ToString().Equals("selectManual"))
             {
-                manualSelect = true;
-                fileSelect = false;
+                JumbledWordSolverModel.ManualSelect = true;
+                JumbledWordSolverModel.FileSelect = false;
+                OnPropertyChange("JumbledWordSolverModel");
             }
             else if (obj.ToString().Equals("fileSelect"))
             {
-                manualSelect = false;
-                fileSelect = true;
+                JumbledWordSolverModel.ManualSelect = false;
+                JumbledWordSolverModel.FileSelect = true;
+                OnPropertyChange("JumbledWordSolverModel");
             }
         }
 
@@ -205,6 +200,4 @@ namespace JumbledWordSolver.ViewModel
         public string displayScrambledWord { get; set; }
         public string displayWord { get; set; }
     }
-
-
 }

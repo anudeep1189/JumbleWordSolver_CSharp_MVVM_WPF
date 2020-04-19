@@ -56,6 +56,7 @@
 
         <TextBox Grid.Row="1" Grid.Column="1" x:Name="manualEntry" Text="{Binding JumbledWordSolverModel.ManualEntryValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" IsEnabled="{Binding ElementName=selectManual, Path=IsChecked}" Margin="5" Style="{StaticResource textBoxInError}"></TextBox>
         <TextBox Grid.Row="2" Grid.Column="1" x:Name="filePath"  Text="{Binding JumbledWordSolverModel.InputFilePath,Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"  IsEnabled="{Binding ElementName=selectFilePath, Path=IsChecked}" Margin="5" Style="{StaticResource textBoxInError}"></TextBox>
+        
         <Button Grid.Row="2" Grid.Column="2"  IsEnabled="{Binding ElementName=selectFilePath, Path=IsChecked}"  Command="{Binding BtnPressed}" CommandParameter="openFileBrowser"  Margin="10,5,163,5">Browse</Button>
         <Button Grid.Row="4" Grid.Column="1" x:Name="solve" Command="{Binding BtnPressed}" CommandParameter="Solve" Margin="43,10,60,7" >Solve</Button>
 

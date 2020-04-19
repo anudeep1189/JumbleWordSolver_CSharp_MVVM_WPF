@@ -53,7 +53,24 @@ namespace JumbledWordSolver.Model
             }
         }
 
-            private const string dictonaryLocation = @"..\..\Utility\EnglishDictionaryFiles\english2.txt";
+      
+        bool manualSelect = true;
+        bool fileSelect = false;
+
+        public bool ManualSelect
+        {
+            get { return manualSelect; }
+            set { manualSelect = value; }
+        }
+
+        public bool FileSelect
+        {
+            get { return fileSelect; }
+            set { fileSelect = value; }
+        }
+
+
+        private const string dictonaryLocation = @"..\..\Utility\EnglishDictionaryFiles\english2.txt";
             private static readonly FileReader _fileReader = new FileReader();
             private static readonly WordMatcher _wordMatcher = new WordMatcher();
           
@@ -96,21 +113,19 @@ namespace JumbledWordSolver.Model
 
         public string this[string propertyName]
         {
-            
-
             get
             {
                 string result = string.Empty;
                 switch (propertyName)
                 {
                     case "ManualEntryValue":
-                        if (string.IsNullOrEmpty(ManualEntryValue))
+                        if (string.IsNullOrEmpty(ManualEntryValue) && ManualSelect == true)
                         {
                             return (result = "Enter the jumbled word/words(Separated by , (comma))");
                         }
                         break;
                     case "InputFilePath":
-                        if (string.IsNullOrEmpty(InputFilePath))
+                        if (string.IsNullOrEmpty(InputFilePath) && FileSelect == true)
                         {
                             return (result = "Select the file containg the jumbled word/words(Separated by new line)");
                         }
