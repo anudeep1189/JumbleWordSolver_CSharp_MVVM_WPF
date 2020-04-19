@@ -16,7 +16,7 @@ using System.Windows;
 
 namespace JumbledWordSolver.ViewModel
 {
-    class JumbledWordSolverViewModel: INotifyPropertyChanged
+    class JumbledWordSolverViewModel : INotifyPropertyChanged
     {
         public JumbledWordSolverViewModel()
         {
@@ -39,7 +39,7 @@ namespace JumbledWordSolver.ViewModel
         }
 
         public List<MatchedWord> ouputListOfObjects;
-       
+
         #region btnPressed
 
         private ICommand btnPressed;
@@ -49,7 +49,7 @@ namespace JumbledWordSolver.ViewModel
             {
                 if (btnPressed == null)
                 {
-                    btnPressed = new RelayCommand(ExecuteBtnPressed,CanExecuteBtnPressed,false);
+                    btnPressed = new RelayCommand(ExecuteBtnPressed, CanExecuteBtnPressed, false);
 
                 }
                 return btnPressed;
@@ -61,19 +61,19 @@ namespace JumbledWordSolver.ViewModel
 
         private bool CanExecuteBtnPressed(object arg)
         {
-            
+
             if (manualSelect == true && (JumbledWordSolverModel.ManualEntryValue != null &&
                 JumbledWordSolverModel.ManualEntryValue != string.Empty))
             {
                 return true;
             }
-            else if (fileSelect == true )
+            else if (fileSelect == true)
             {
                 return true;
 
             }
             return false;
-           
+
         }
 
         private void ExecuteBtnPressed(object obj)
@@ -133,6 +133,10 @@ namespace JumbledWordSolver.ViewModel
         bool manualSelect = true;
         bool fileSelect = false;
 
+        
+
+
+
         #region radiobtn
         private ICommand radiobtn;
         public ICommand Radiobtn
@@ -170,7 +174,7 @@ namespace JumbledWordSolver.ViewModel
         }
 
         #endregion
-      
+
         private JumbledWordSolverModel _jumbledWordSolverModel;
         public JumbledWordSolverModel JumbledWordSolverModel
         {
@@ -184,8 +188,6 @@ namespace JumbledWordSolver.ViewModel
                 OnPropertyChange("JumbledWordSolverModel");
             }
         }
-
-        
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChange(string propertyName)

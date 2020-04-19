@@ -23,6 +23,15 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="textBoxInError" TargetType="TextBox">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                        Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </UserControl.Resources>
 
         <Grid Margin="0,10,318,34">
@@ -45,8 +54,8 @@
         <RadioButton  x:Name="selectManual" IsChecked="True" Grid.Row="1" Grid.Column="0" FontSize="14" Command="{Binding Radiobtn}" CommandParameter="selectManual">Manual</RadioButton>
         <RadioButton x:Name="selectFilePath" Grid.Row="2" Grid.Column="0" FontSize="14" Command="{Binding Radiobtn}" CommandParameter="fileSelect">Select File</RadioButton>
 
-        <TextBox Grid.Row="1" Grid.Column="1" x:Name="manualEntry" Text="{Binding JumbledWordSolverModel.ManualEntryValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding ElementName=selectManual, Path=IsChecked}" Margin="5"></TextBox>
-        <TextBox Grid.Row="2" Grid.Column="1" x:Name="filePath"  Text="{Binding JumbledWordSolverModel.InputFilePath,Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged}"  IsEnabled="{Binding ElementName=selectFilePath, Path=IsChecked}" Margin="5"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" x:Name="manualEntry" Text="{Binding JumbledWordSolverModel.ManualEntryValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" IsEnabled="{Binding ElementName=selectManual, Path=IsChecked}" Margin="5" Style="{StaticResource textBoxInError}"></TextBox>
+        <TextBox Grid.Row="2" Grid.Column="1" x:Name="filePath"  Text="{Binding JumbledWordSolverModel.InputFilePath,Mode=TwoWay ,UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"  IsEnabled="{Binding ElementName=selectFilePath, Path=IsChecked}" Margin="5" Style="{StaticResource textBoxInError}"></TextBox>
         <Button Grid.Row="2" Grid.Column="2"  IsEnabled="{Binding ElementName=selectFilePath, Path=IsChecked}"  Command="{Binding BtnPressed}" CommandParameter="openFileBrowser"  Margin="10,5,163,5">Browse</Button>
         <Button Grid.Row="4" Grid.Column="1" x:Name="solve" Command="{Binding BtnPressed}" CommandParameter="Solve" Margin="43,10,60,7" >Solve</Button>
 

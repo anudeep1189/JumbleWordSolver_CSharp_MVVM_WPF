@@ -22,7 +22,7 @@ namespace JumbledWordSolver.Model
                     }
 
                     //if length of both word is same then proceed with this condition or else 
-                    //wasting time in checking the word.
+                    //dont wasting loop in checking the word.
                     else if(scrambledWord.Length == word.Length) 
                     {
                         var scrambleWordArray = scrambledWord.ToCharArray();
@@ -55,7 +55,6 @@ namespace JumbledWordSolver.Model
             MatchedWord matchedWord = new MatchedWord();
             matchedWord.scrambledWords = scrambleWord;
             matchedWord.word = word;
-
             //or
             //much more cleaner way to do 
             /*

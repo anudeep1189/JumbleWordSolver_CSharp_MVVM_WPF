@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows;
+using System.ComponentModel;
+using JumbledWordSolver.ViewModel;
 
 namespace JumbledWordSolver.Model
 {
-    public class JumbledWordSolverModel
+    public class JumbledWordSolverModel:IDataErrorInfo
     {
         //Write the properties here
         private string manualEntryValue;
@@ -84,6 +86,40 @@ namespace JumbledWordSolver.Model
 
             return matchedWords;
         }
+
+        #region IErrorInfo
+
+        public string Error
+        {
+            get { return null; }
+        }
+
+        public string this[string propertyName]
+        {
+            
+
+            get
+            {
+                string result = string.Empty;
+                switch (propertyName)
+                {
+                    case "ManualEntryValue":
+                        if (string.IsNullOrEmpty(ManualEntryValue))
+                        {
+                            return (result = "Enter the jumbled word/words(Separated by , (comma))");
+                        }
+                        break;
+                    case "InputFilePath":
+                        if (string.IsNullOrEmpty(InputFilePath))
+                        {
+                            return (result = "Select the file containg the jumbled word/words(Separated by new line)");
+                        }
+                        break;
+                } 
+                return result;
+            }
+        }
+        #endregion
     }
     public class MatchedWord
     {
