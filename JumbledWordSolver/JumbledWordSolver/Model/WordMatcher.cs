@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JumbledWordSolver.Model
 {
-    class WordMatcher
+    public class WordMatcher
     {
         public List<MatchedWord> Match(string[] scrambledWords, string[] wordList)
         {
