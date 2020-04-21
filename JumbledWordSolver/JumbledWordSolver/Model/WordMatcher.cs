@@ -10,11 +10,11 @@ namespace JumbledWordSolver.Model
     {
         public List<MatchedWord> Match(string[] scrambledWords, string[] wordList)
         {
-            var matchWords = new List<MatchedWord>();
+            List<MatchedWord> matchWords = new List<MatchedWord>();
         
-            foreach (var scrambledWord in scrambledWords)
+            foreach (string scrambledWord in scrambledWords)
             {
-                foreach(var word in wordList)
+                foreach(string word in wordList)
                 {
                     if(scrambledWord.Equals(word,StringComparison.OrdinalIgnoreCase))
                     {
@@ -25,8 +25,8 @@ namespace JumbledWordSolver.Model
                     //dont wasting loop in checking the word.
                     else if(scrambledWord.Length == word.Length) 
                     {
-                        var scrambleWordArray = scrambledWord.ToCharArray();
-                        var wordArray = word.ToCharArray();
+                        char[] scrambleWordArray = scrambledWord.ToCharArray();
+                        char[] wordArray = word.ToCharArray();
 
                         Array.Sort(scrambleWordArray);
                         Array.Sort(wordArray);
@@ -36,8 +36,8 @@ namespace JumbledWordSolver.Model
                         if (scrambleWordArray[0].ToString().Equals(wordArray[0].ToString(), StringComparison.OrdinalIgnoreCase))
                         {
                             //char array to string creation
-                            var sortedScrambledWord = new string(scrambleWordArray);
-                            var sortedwordArray = new string(wordArray);
+                            string sortedScrambledWord = new string(scrambleWordArray);
+                            string sortedwordArray = new string(wordArray);
 
                             if (sortedScrambledWord.Equals(sortedwordArray, StringComparison.OrdinalIgnoreCase))
                             {

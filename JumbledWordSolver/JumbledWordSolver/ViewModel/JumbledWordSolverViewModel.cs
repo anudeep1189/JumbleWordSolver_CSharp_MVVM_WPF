@@ -93,7 +93,7 @@ namespace JumbledWordSolver.ViewModel
                     if (JumbledWordSolverModel.ManualSelect)
                     {
                         ouputListOfObjects = JumbledWordSolverModel.ExecuteScrambledWordManualEntryScenario();
-                        foreach (var ouputListOfObject in ouputListOfObjects)
+                        foreach (MatchedWord ouputListOfObject in ouputListOfObjects)
                         {
                             DisplayMatchedWord OBJDisplayMatchedWord = new DisplayMatchedWord
                             {
@@ -107,7 +107,7 @@ namespace JumbledWordSolver.ViewModel
                     else if (JumbledWordSolverModel.FileSelect && JumbledWordSolverModel.InputFilePath != null)
                     {
                         ouputListOfObjects = JumbledWordSolverModel.ExecuteScrambledWordFileEntryScenario();
-                        foreach (var ouputListOfObject in ouputListOfObjects)
+                        foreach (MatchedWord ouputListOfObject in ouputListOfObjects)
                         {
                             DisplayMatchedWord OBJDisplayMatchedWord = new DisplayMatchedWord
                             {
